@@ -1,579 +1,156 @@
--- Gui to Lua
--- Version: 3.2
+local Bypasses = {
+	["ass"] = "as{{aieixzvzx:s}}",
+	["asshole"] = "as{{riptidewashere:shole}}",
+	["bitch"] = "bit{{riptidewashere:ch}}",
+	["cock"] = "co{{riptidewashere:ck}}",
+	["cunt"] = "cu{{riptidewashere:nt}}",
+	["dick"] = "di{{riptidewashere:ck}}",
+	["dyke"] = "dy{{riptidewashere:ke}}",
+	["faggot"] = "fa{{riptidewashere:ggot}}",
+	["fuck"] = "fu{{riptidewashere:ck}}",
+	["gaylord"] = "gayl{{riptidewashere:ord}}",
+	["cum"] = "cu{{riptidewashere:m}}",
+	["sex"] = "se{{riptidewashere:x}}",
+	["hitler"] = "hit{{riptidewashere:ler}}",
+	["cum"] = "cu{{riptidewashere:m}}",
+	["kike"] = "ki{{riptidewashere:ke}}",
+	["motherfucker"] = "motherf{{riptidewashere:ucker}}",
+	["nigga"] = "ni{{riptidewashere:gga}}",
+	["nigger"] = "ni{{riptidewashere:gger}}",
+	["piss"] = "p{{riptidewashere:iss}}",
+	["penis"] = "pe{{riptidewashere:nis}}",
+	["pussy"] = "pu{{riptidewashere:ssy}}",
+	["shit"] = "sh{{riptidewashere:it}}",
+	["slut"] = "sl{{riptidewashere:ut}}",
+	["whore"] = "who{{riptidewashere:re}}",
+	["discord"] = "disco{{riptidewashere:rd}}",
+	["kys"] = "k{{riptidewashere:ys}}",
+	["slave"] = "sla{{riptidewashere:ve}}",
+	["niggers"] = "ni{{riptidewashere:ggers}}",
+	["kill"] = "ki{{riptidewashere:ll}}",
+	["date"] = "da{{riptidewashere:te}}",
+	["raped"] = "ra{{riptidewashere:ped}}",
+	["rape"] = "ra{{riptidewashere:pe}}",
+	["hentai"] = "hen{{riptidewashere:tai}}",
+	["pornhub"] = "po{{riptidewashere:rnhub}}",
+	["childporn"] = "childpo{{riptidewashere:rn}}",
+	["fucking"] = "fu{{riptidewashere:cking}}",
+	["tits"] = "ti{{riptidewashere:ts}}",
+	["discord.com"] = "disco{{riptidewashere:rd.com}}",
+	["wtf"] = "wt{{riptidewashere:f}}",
+	["will"] = "wi{{riptidewashere:ll}}",
+	["porn"] = "po{{riptidewashere:rn}}",
+	["gay"] = "g{{riptidewashere:ay}}",
+	["1"] = "on{{riptidewashere:e}}",
+	["2"] = "t{{riptidewashere:wo}}",
+	["3"] = "th{{riptidewashere:ree}}",
+	["4"] = "fo{{riptidewashere:ur}}",
+	["5"] = "fi{{riptidewashere:ve}}",
+	["6"] = "s{{riptidewashere:ix}}",
+	["7"] = "se{{riptidewashere:ven}}",
+	["8"] = "ei{{riptidewashere:ght}}",
+	["9"] = "ni{{riptidewashere:ne}}",
+	["10"] = "te{{riptidewashere:n}}",
+	["daddy"] = "da{{riptidewashere:ddy}}",
+	["mommy"] = "mo{{riptidewashere:mmy}}",
+	["kkk"] = "k{{riptidewashere:kk}}",
+	["suck"] = "suc{{riptidewashere:k}}",
+	["sucking"] = "suc{{riptidewashere:king}}",
+	["ㅤ"] = "ㅤ{{riptidewashere:ㅤ}}",
+	["marry"] = "mar{{riptidewashere:ry}}",
+	["kiss"] = "kis{{riptidewashere:s}}",
+	["blow"] = "bl{{riptidewashere:ow}}",
+	["athiest"] = "athi{{riptidewashere:est}}",
+	["jewish"] = "je{{riptidewashere:wish}}",
+	["christian"] = "chri{{riptidewashere:stian}}",
+	["muslim"] = "mu{{riptidewashere:slim}}",
+	["jurdism"] = "jur{{riptidewashere:dism}}",
+	["islam"] = "isl{{riptidewashere:am}}",
+	["christianity"] = "chri{{riptidewashere:stianity}}",
+	["bomb"] = "bom{{riptidewashere:b}}",
+	["dick"] = "d{{riptidewashere:ick}}",
+	["you"] = "yo{{riptidewashere:u}}",
+	["child"] = "chi{{riptidewashere:ld}}",
+	["my"] = "m{{riptidewashere:y}}",
+	["racism"] = "raci{{riptidewashere:sm}}",
+	["hoe"] = "h{{riptidewashere:oe}}",
+	["sucide"] = "suc{{riptidewashere:ide}}",
+	["your"] = "yo{{riptidewashere:ur}}",
+	["sugar"] = "sug{{riptidewashere:ar}}",
+	["on"] = "o{{riptidewashere:n}}",
+	["riding"] = "rid{{riptidewashere:ing}}",
+	["he"] = "h{{riptidewashere:e}}",
+	["she"] = "sh{{riptidewashere:e}}",
+	["is"] = "i{{riptidewashere:s}}",
+	["all"] = "al{{riptidewashere:l}}",
+	["nazi"] = "naz{{riptidewashere:i}}",
+	["gore"] = "gor{{riptidewashere:e}}",
+	["black"] = "bla{{riptidewashere:ck}}",
+	["last"] = "la{{riptidewashere:st}}",
+	["night"] = "n{{riptidewashere:ight}}",
+	["fucked"] = "fu{{riptidewashere:cked}}",
+	["peg"] = "pe{{riptidewashere:g}}",
+	["pegged"] = "pe{{riptidewashere:gged}}",
+	["finger"] = "fin{{riptidewashere:ger}}",
+	["fingered"] = "fin{{riptidewashere:gered}}",
+	["because"] = "beca{{riptidewashere:use}}",
+	["eat"] = "ea{{riptidewashere:t}}",
+	["am"] = "a{{riptidewashere:m}}",
+	["gonna"] = "go{{riptidewashere:nna}}",
+	["have"] = "hav{{riptidewashere:e}}",
+	["cuddle"] = "cud{{riptidewashere:dle}}",
+	["lick"] = "lic{{riptidewashere:k}}",
+	["balls"] = "ba{{riptidewashere:lls}}",
+	["wanna"] = "wa{{riptidewashere:nna}}",
+	["bend"] = "ben{{riptidewashere:d}}",
+	["over"] = "ov{{riptidewashere:er}}",
+	["baby"] = "ba{{riptidewashere:by}}",
+	["babe"] = "ba{{riptidewashere:be}}",
+	["sexy"] = "se{{riptidewashere:xy}}",
+	["this"] = "th{{riptidewashere:is}}",
+	["attractive"] = "attr{{riptidewashere:active}}",
+	[""] = "dis{{riptidewashere:cord.gg/horsecock}}"
 
--- Instances:
 
-local ScreenGui = Instance.new("ScreenGui")
-local TextLabel = Instance.new("TextLabel")
-local UICorner = Instance.new("UICorner")
 
---Properties:
 
-ScreenGui.Parent = game.CoreGui
+}
 
-TextLabel.Parent = ScreenGui
-TextLabel.BackgroundColor3 = Color3.fromRGB(88, 88, 88)
-TextLabel.Position = UDim2.new(0.407235622, 0, 0.446229905, 0)
-TextLabel.Size = UDim2.new(0, 200, 0, 50)
-TextLabel.Font = Enum.Font.SourceSansSemibold
-TextLabel.Text = "SCRIPT  ATTACHED✅"
-TextLabel.TextColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel.TextScaled = true
-TextLabel.TextSize = 14.000
-TextLabel.TextWrapped = true
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local Remote = ReplicatedStorage:FindFirstChild("SayMessageRequest", true)
 
-UICorner.Parent = TextLabel
+local ChatBypass; ChatBypass = hookmetamethod(Remote, "__namecall", function(self, ...)
+	local Method = getnamecallmethod()
+	local Arguments = {...}
 
--- Scripts:
+	if self == Remote and Method == "FireServer" then
+		local Message = Arguments[1]
+		local Split = Message:split(" ")
+		local FinalMessage = ""
 
-local function DZYKB_fake_script() -- TextLabel.Script 
-	local script = Instance.new('Script', TextLabel)
-
-	while true do
-		script.Parent.Transparency = 0
-		script.Parent.TextTransparency = 0
-		wait(0.5)
-		script.Parent.Transparency = 0.2
-		script.Parent.TextTransparency = 0.4
-		wait(0.7)
-		script.Parent.Transparency = 0.4
-		script.Parent.TextTransparency = 0.7
-		wait(0.9)
-		script.Parent.Transparency = 0.6
-		script.Parent.TextTransparency = 0.9
-		wait(0.9)
-		script.Parent.Parent:remove()
-	end
-	
-	
-	print("Script Attached!")
-end
-coroutine.wrap(DZYKB_fake_script)()
-local function ISSUZLX_fake_script() -- TextLabel.LocalScript 
-	local script = Instance.new('LocalScript', TextLabel)
-
-	local Bypasses = {
-		["ass"] = "as{{aieixzvzx:s}}",
-		["asshole"] = "as{{aieixzvzx:shole}}",
-		["bitch"] = "bit{{aieixzvzx:ch}}",
-		["cock"] = "co{{aieixzvzx:ck}}",
-		["cunt"] = "cu{{aieixzvzx:nt}}",
-		["dick"] = "di{{zczxczvz:ck}}",
-		["dyke"] = "dy{{aieixzvzx:ke}}",
-		["faggot"] = "fa{{aieixzvzx:ggot}}",
-		["fuck"] = "fu{{aieixzvzx:ck}}",
-		["gaylord"] = "gayl{{aieixzvzx:ord}}",
-		["cum"] = "cu{{aieixzvzx:m}}",
-		["sex"] = "se{{aieixzvzx:x}}",
-		["hitler"] = "hit{{aieixzvzx:ler}}",
-		["cum"] = "cu{{aieixzvzx:m}}",
-		["kike"] = "ki{{aieixzvzx:ke}}",
-		["motherfucker"] = "motherf{{aieixzvzx:ucker}}",
-		["nigga"] = "ni{{aieixzvzx:gga}}",
-		["nigger"] = "ni{{aieixzvzx:gger}}",
-		["piss"] = "p{{aieixzvzx:iss}}",
-		["penis"] = "pe{{aieixzvzx:nis}}",
-		["pussy"] = "pu{{aieixzvzx:ssy}}",
-		["shit"] = "sh{{aieixzvzx:it}}",
-		["slut"] = "sl{{aieixzvzx:ut}}",
-		["whore"] = "who{{aieixzvzx:re}}",
-		["discord"] = "disco{{aieixzvzx:rd}}",
-		["kys"] = "k{{aieixzvzx:ys}}",
-		["slave"] = "sla{{aieixzvzx:ve}}",
-		["niggers"] = "ni{{aieixzvzx:ggers}}",
-		["kill"] = "ki{{aieixzvzx:ll}}",
-		["date"] = "da{{aieixzvzx:te}}",
-		["raped"] = "ra{{aieixzvzx:ped}}",
-		["rape"] = "ra{{aieixzvzx:pe}}",
-		["hentai"] = "hen{{aieixzvzx:tai}}",
-		["pornhub"] = "po{{aieixzvzx:rnhub}}",
-		["childporn"] = "childpo{{aieixzvzx:rn}}",
-		["fucking"] = "fu{{aieixzvzx:cking}}",
-		["tits"] = "ti{{aieixzvzx:ts}}",
-		["discord.com"] = "disco{{aieixzvzx:rd.com}}",
-		["wtf"] = "wt{{aieixzvzx:f}}",
-		["will"] = "wi{{aieixzvzx:ll}}",
-		["porn"] = "po{{aieixzvzx:rn}}",
-		["gay"] = "g{{aieixzvzx:ay}}",
-		["1"] = "on{{aieixzvzx:e}}",
-		["2"] = "t{{aieixzvzx:wo}}",
-		["3"] = "th{{aieixzvzx:ree}}",
-		["4"] = "fo{{aieixzvzx:ur}}",
-		["5"] = "fi{{aieixzvzx:ve}}",
-		["6"] = "s{{aieixzvzx:ix}}",
-		["7"] = "se{{aieixzvzx:ven}}",
-		["8"] = "ei{{aieixzvzx:ght}}",
-		["9"] = "ni{{aieixzvzx:ne}}",
-		["10"] = "te{{aieixzvzx:n}}",
-		["daddy"] = "da{{aieixzvzx:ddy}}",
-		["mommy"] = "mo{{aieixzvzx:mmy}}",
-		["kkk"] = "k{{aieixzvzx:kk}}",
-		["suck"] = "suc{{aieixzvzx:k}}",
-		["sucking"] = "suc{{aieixzvzx:king}}",
-		["ㅤ"] = "ㅤ{{aieixzvzx:ㅤ}}",
-		["marry"] = "mar{{aieixzvzx:ry}}",
-		["kiss"] = "kis{{aieixzvzx:s}}",
-		["blow"] = "bl{{aieixzvzx:ow}}",
-		["athiest"] = "athi{{aieixzvzx:est}}",
-		["jewish"] = "je{{aieixzvzx:wish}}",
-		["christian"] = "chri{{aieixzvzx:stian}}",
-		["muslim"] = "mu{{aieixzvzx:slim}}",
-		["jurdism"] = "jur{{aieixzvzx:dism}}",
-		["islam"] = "isl{{aieixzvzx:am}}",
-		["christianity"] = "chri{{aieixzvzx:stianity}}",
-		["bomb"] = "bom{{aieixzvzx:b}}",
-		["dick"] = "d{{aieixzvzx:ick}}",
-		["you"] = "yo{{aieixzvzx:u}}",
-		["child"] = "chi{{aieixzvzx:ld}}",
-		["my"] = "m{{aieixzvzx:y}}",
-		["racism"] = "raci{{aieixzvzx:sm}}",
-		["hoe"] = "h{{aieixzvzx:oe}}",
-		["sucide"] = "suc{{aieixzvzx:ide}}",
-		["your"] = "yo{{aieixzvzx:ur}}",
-		["sugar"] = "sug{{aieixzvzx:ar}}",
-		["on"] = "o{{aieixzvzx:n}}",
-		["riding"] = "rid{{aieixzvzx:ing}}",
-		["he"] = "h{{aieixzvzx:e}}",
-		["she"] = "sh{{aieixzvzx:e}}",
-		["is"] = "i{{aieixzvzx:s}}",
-		["all"] = "al{{aieixzvzx:l}}",
-		["nazi"] = "naz{{aieixzvzx:i}}",
-		["gore"] = "gor{{aieixzvzx:e}}",
-		["black"] = "bla{{aieixzvzx:ck}}",
-		["last"] = "la{{aieixzvzx:st}}",
-		["night"] = "n{{aieixzvzx:ight}}",
-		["fucked"] = "fu{{aieixzvzx:cked}}",
-		["peg"] = "pe{{aieixzvzx:g}}",
-		["pegged"] = "pe{{aieixzvzx:gged}}",
-		["finger"] = "fin{{aieixzvzx:ger}}",
-		["fingered"] = "fin{{aieixzvzx:gered}}",
-		["because"] = "beca{{aieixzvzx:use}}",
-		["eat"] = "ea{{aieixzvzx:t}}",
-		["am"] = "a{{aieixzvzx:m}}",
-		["gonna"] = "go{{aieixzvzx:nna}}",
-		["have"] = "hav{{aieixzvzx:e}}",
-		["cuddle"] = "cud{{aieixzvzx:dle}}",
-		["lick"] = "lic{{aieixzvzx:k}}",
-		["balls"] = "ba{{aieixzvzx:lls}}",
-		["wanna"] = "wa{{aieixzvzx:nna}}",
-		["bend"] = "ben{{aieixzvzx:d}}",
-		["over"] = "ov{{aieixzvzx:er}}",
-		["baby"] = "ba{{aieixzvzx:by}}",
-		["babe"] = "ba{{aieixzvzx:be}}",
-		["sexy"] = "se{{aieixzvzx:xy}}",
-		["this"] = "th{{aieixzvzx:is}}",
-		["attractive"] = "attr{{aieixzvzx:active}}",
-		[""] = "dis{{aieixzvzx:cord.gg/horsecock}}"
-	
-	
-	
-	
-	}
-	
-	local ReplicatedStorage = game:GetService("ReplicatedStorage")
-	local Remote = ReplicatedStorage:FindFirstChild("SayMessageRequest", true)
-	
-	local ChatBypass; ChatBypass = hookmetamethod(Remote, "__namecall", function(self, ...)
-		local Method = getnamecallmethod()
-		local Arguments = {...}
-	
-		if self == Remote and Method == "FireServer" then
-			local Message = Arguments[1]
-			local Split = Message:split(" ")
-			local FinalMessage = ""
-	
-			for _, x in next, Split do
-				for _, Bypass in next, Bypasses do
-					if x:lower() == _ then
-						if x:upper() ~= x then
-							Message = Message:gsub(x, Bypass)
-							FinalMessage = Message .. "fn"
-						else
-							Message = Message:gsub(x, Bypass):upper()
-							FinalMessage = Message:gsub(x, Bypass):upper() .. "fn"
-						end
+		for _, x in next, Split do
+			for _, Bypass in next, Bypasses do
+				if x:lower() == _ then
+					if x:upper() ~= x then
+						Message = Message:gsub(x, Bypass)
+						FinalMessage = Message .. "fn"
+					else
+						Message = Message:gsub(x, Bypass):upper()
+						FinalMessage = Message:gsub(x, Bypass):upper() .. "fn"
 					end
 				end
 			end
-	
-			if FinalMessage ~= "" then
-				Arguments[1] = FinalMessage
-			end
-	
-			return ChatBypass(self, unpack(Arguments))
 		end
-	
-		return ChatBypass(self, ...)
-	
-	
-		--fucking
-	end)
-end
-coroutine.wrap(ISSUZLX_fake_script)()
-local function BREER_fake_script() -- TextLabel.LocalScript 
-	local script = Instance.new('LocalScript', TextLabel)
 
-	if not game:IsLoaded() then
-		game.Loaded:wait()
-	end
-	
-	local Players = game:GetService("Players")
-	local Player = Players.LocalPlayer or Players.PlayerAdded:wait()
-	
-	local PostMessage = require(Player:WaitForChild("PlayerScripts"):WaitForChild("ChatScript"):WaitForChild("ChatMain")).MessagePosted
-	MessageEvent = Instance.new("BindableEvent")
-	
-	local OldFunctionHook
-	local PostMessageHook = function(self, Message)
-		if not checkcaller() and self == PostMessage then
-			MessageEvent:Fire(Message)
-			return
+		if FinalMessage ~= "" then
+			Arguments[1] = FinalMessage
 		end
-		return OldFunctionHook(self, Message)
-	end
-	OldFunctionHook = hookfunction(PostMessage.fire, PostMessageHook)
-end
-coroutine.wrap(BREER_fake_script)()
-local function LAJK_fake_script() -- TextLabel.LocalScript 
-	local script = Instance.new('LocalScript', TextLabel)
 
-	--sacred was here
-	
-	local logs = true --Enables logs or not
-	local ChatMain = require(game:GetService("Players").LocalPlayer.PlayerScripts.ChatScript.ChatMain)
-	local blacklistedFirstCharacter = {"a","b","c","d","e","f","g","h","i","j","k","m","n","l","o","p","q","r","s","t","u","v","w","x","y","z","A","B","C","D","E","F","G","H","I","J","K","M","N","L","O","P","Q","R","S","T","U","V","W","X","Y","Z","1","2","3","4","5","6","7","8","9","0","/","@","?",}
-	
-	local fakeMessagePosted = Instance.new("BindableEvent")
-	fakeMessagePosted.Name = "MessagePosted"
-	
-	local oldMessagePosted = ChatMain.MessagePosted
-	ChatMain.MessagePosted = fakeMessagePosted
-	
-	function IsBlacklisted(char)
-		if table.find(blacklistedFirstCharacter, char) ~= nil then
-			return true
-		end
-		return false
+		return ChatBypass(self, unpack(Arguments))
 	end
-	
-	fakeMessagePosted.Event:Connect(function(msg)
-		if IsBlacklisted(string.sub(msg, 1, 1)) == true then
-			if logs == true then
-				printconsole("[LOGS]: Prevented "..tostring(msg).." to be in Chatted!")
-			end
-		elseif IsBlacklisted(string.sub(msg, 1, 1)) == false then
-			oldMessagePosted:fire(msg)
-			if logs == true then
-				printconsole("[LOGS]: Sent command "..tostring(msg).." to be in Chatted!")
-			end
-		end
-	end)
-end
-coroutine.wrap(LAJK_fake_script)()
-local function KOCEWAH_fake_script() -- TextLabel.LocalScript 
-	local script = Instance.new('LocalScript', TextLabel)
 
-	--lord senor
-	
-	--[[
-	    Change-logs:
-	    8/22/2022 - Fixed Chat gui glitching on some games such as Prison Life.
-	]]--
-	
-	if not game:IsLoaded() then
-		game.Loaded:wait()
-	end
-	
-	local ACL_LoadTime = tick()
-	
-	local CoreGui = game:GetService("CoreGui")
-	local StarterGui = game:GetService("StarterGui")
-	local TweenService = game:GetService("TweenService")
-	local Players = game:GetService("Players")
-	
-	local Player = Players.LocalPlayer
-	
-	local PlayerGui = Player:FindFirstChildWhichIsA("PlayerGui") do
-		if not PlayerGui then
-			repeat task.wait() until Player:FindFirstChildWhichIsA("PlayerGui")
-			PlayerGui = Player:FindFirstChildWhichIsA("PlayerGui")
-		end
-	end
-	
-	local Notify = function(_Title, _Text , Time)
-		StarterGui:SetCore("SendNotification", {Title = _Title, Text = _Text, Icon = "rbxassetid://2541869220", Duration = Time})
-	end
-	
-	local Tween = function(Object, Time, Style, Direction, Property)
-		return TweenService:Create(Object, TweenInfo.new(Time, Enum.EasingStyle[Style], Enum.EasingDirection[Direction]), Property)
-	end
-	
-	local Insert = function(Tbl, ...)
-		for _, x in next, {...} do
-			table.insert(Tbl, x) 
-		end
-	end
-	
-	local ChatFixToggle = true
-	local CoreGuiSettings = {}
-	local ChatFix
-	
-	ChatFix = hookmetamethod(StarterGui, "__namecall", function(self, ...)
-		local Method = getnamecallmethod()
-		local Arguments = {...}
-	
-		if not checkcaller() and ChatFixToggle and Method == "SetCoreGuiEnabled" then
-			local CoreGuiType = Arguments[1]
-			local SettingValue = Arguments[2]
-	
-			if CoreGuiType == ("All" or "Chat") then
-				Insert(CoreGuiSettings, CoreGuiType, SettingValue)
-				return
-			end
-		end
-	
-		return ChatFix(self, ...)
-	end)
-	
-	local ACLWarning = Instance.new("ScreenGui")
-	local Background = Instance.new("Frame")
-	local Top = Instance.new("Frame")
-	local Exit = Instance.new("TextButton")
-	local UICorner = Instance.new("UICorner")
-	local WarningLbl = Instance.new("TextLabel")
-	local Loading = Instance.new("Frame")
-	local Bar = Instance.new("Frame")
-	local WarningBackground = Instance.new("Frame")
-	local WarningFrame = Instance.new("Frame")
-	local Despair = Instance.new("TextLabel")
-	local UIListLayout = Instance.new("UIListLayout")
-	local Reason_1 = Instance.new("TextLabel")
-	local Reason_2 = Instance.new("TextLabel")
-	local Trollge = Instance.new("ImageLabel")
-	local UIPadding = Instance.new("UIPadding")
-	
-	local MakeGuiThread = coroutine.wrap(function()    
-		syn.protect_gui(ACLWarning)
-	
-		ACLWarning.Name = "ACL Warning"
-		ACLWarning.Parent = CoreGui
-		ACLWarning.Enabled = false
-		ACLWarning.DisplayOrder = -2147483648
-	
-		Background.Name = "Background"
-		Background.Parent = ACLWarning
-		Background.AnchorPoint = Vector2.new(0.5, 0.5)
-		Background.BackgroundColor3 = Color3.fromRGB(21, 0, 0)
-		Background.BorderSizePixel = 0
-		Background.Position = UDim2.new(0.5, 0, 0.5, 0)
-		Background.Size = UDim2.new(0.300000012, 0, 0.5, 0)
-	
-		Top.Name = "Top"
-		Top.Parent = Background
-		Top.AnchorPoint = Vector2.new(0.5, 0.5)
-		Top.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
-		Top.BorderSizePixel = 0
-		Top.Position = UDim2.new(0.5, 0, 0.100000001, 0)
-		Top.Size = UDim2.new(0.899999976, 0, 0.100000001, 0)
-	
-		Exit.Name = "Exit"
-		Exit.Parent = Top
-		Exit.AnchorPoint = Vector2.new(0.5, 0.5)
-		Exit.BackgroundColor3 = Color3.fromRGB(38, 0, 0)
-		Exit.Position = UDim2.new(0.949999988, 0, 0.5, 0)
-		Exit.Size = UDim2.new(0.100000001, -6, 1, -9)
-		Exit.Visible = false
-		Exit.Font = Enum.Font.Arcade
-		Exit.Text = "X"
-		Exit.TextColor3 = Color3.fromRGB(255, 255, 255)
-		Exit.TextScaled = true
-		Exit.TextSize = 14.000
-		Exit.TextWrapped = true
-	
-		UICorner.CornerRadius = UDim.new(0.200000003, 0)
-		UICorner.Parent = Exit
-	
-		WarningLbl.Name = "WarningLbl"
-		WarningLbl.Parent = Top
-		WarningLbl.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		WarningLbl.BackgroundTransparency = 1.000
-		WarningLbl.Position = UDim2.new(0, 17, 0, 0)
-		WarningLbl.Size = UDim2.new(0.5, 0, 1, 0)
-		WarningLbl.Font = Enum.Font.Arcade
-		WarningLbl.Text = "Warning!"
-		WarningLbl.TextColor3 = Color3.fromRGB(255, 255, 255)
-		WarningLbl.TextScaled = true
-		WarningLbl.TextSize = 14.000
-		WarningLbl.TextWrapped = true
-		WarningLbl.TextXAlignment = Enum.TextXAlignment.Left
-	
-		Loading.Name = "Loading"
-		Loading.Parent = Top
-		Loading.AnchorPoint = Vector2.new(0.5, 0.5)
-		Loading.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
-		Loading.BorderSizePixel = 0
-		Loading.Position = UDim2.new(0.699999988, 0, 0.5, 0)
-		Loading.Size = UDim2.new(0.349999994, 0, 0.0199999996, 0)
-	
-		Bar.Name = "Bar"
-		Bar.Parent = Loading
-		Bar.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		Bar.BorderSizePixel = 0
-		Bar.Size = UDim2.new(0, 0, 1, 0)
-	
-		WarningBackground.Name = "WarningBackground"
-		WarningBackground.Parent = Background
-		WarningBackground.AnchorPoint = Vector2.new(0.5, 0.5)
-		WarningBackground.BackgroundColor3 = Color3.fromRGB(9, 9, 9)
-		WarningBackground.BorderSizePixel = 0
-		WarningBackground.Position = UDim2.new(0.5, 0, 0.550000012, 0)
-		WarningBackground.Size = UDim2.new(0.899999976, 0, 0.800000012, 0)
-	
-		WarningFrame.Name = "WarningFrame"
-		WarningFrame.Parent = WarningBackground
-		WarningFrame.AnchorPoint = Vector2.new(0.5, 0.5)
-		WarningFrame.BackgroundColor3 = Color3.fromRGB(17, 17, 17)
-		WarningFrame.BorderSizePixel = 0
-		WarningFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
-		WarningFrame.Size = UDim2.new(0.899999976, 0, 0.899999976, 0)
-	
-		Despair.Name = "Despair"
-		Despair.Parent = WarningFrame
-		Despair.AnchorPoint = Vector2.new(0.5, 0.5)
-		Despair.BackgroundColor3 = Color3.fromRGB(17, 17, 17)
-		Despair.BackgroundTransparency = 1.000
-		Despair.BorderColor3 = Color3.fromRGB(27, 42, 53)
-		Despair.BorderSizePixel = 0
-		Despair.Position = UDim2.new(0.5, 0, 0.100000001, 0)
-		Despair.Size = UDim2.new(0.949999988, 0, 0.119999997, 0)
-		Despair.Font = Enum.Font.Oswald
-		Despair.Text = "Anti Chat Logger will not work here!"
-		Despair.TextColor3 = Color3.fromRGB(255, 255, 255)
-		Despair.TextScaled = true
-		Despair.TextSize = 50.000
-		Despair.TextWrapped = true
-		Despair.TextYAlignment = Enum.TextYAlignment.Top
-	
-		UIListLayout.Parent = WarningFrame
-		UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-		UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
-		UIListLayout.Padding = UDim.new(0, 15)
-	
-		Reason_1.Name = "Reason_1"
-		Reason_1.Parent = WarningFrame
-		Reason_1.AnchorPoint = Vector2.new(0.5, 0.5)
-		Reason_1.BackgroundColor3 = Color3.fromRGB(17, 17, 17)
-		Reason_1.BackgroundTransparency = 1.000
-		Reason_1.BorderColor3 = Color3.fromRGB(27, 42, 53)
-		Reason_1.BorderSizePixel = 0
-		Reason_1.Position = UDim2.new(0.5, 0, 0.100000001, 0)
-		Reason_1.Size = UDim2.new(0.949999988, 0, 0.100000001, 0)
-		Reason_1.Visible = false
-		Reason_1.Font = Enum.Font.Oswald
-		Reason_1.Text = "-Chat Module was not found."
-		Reason_1.TextColor3 = Color3.fromRGB(255, 0, 0)
-		Reason_1.TextScaled = true
-		Reason_1.TextSize = 50.000
-		Reason_1.TextWrapped = true
-		Reason_1.TextYAlignment = Enum.TextYAlignment.Top
-	
-		Reason_2.Name = "Reason_2"
-		Reason_2.Parent = WarningFrame
-		Reason_2.AnchorPoint = Vector2.new(0.5, 0.5)
-		Reason_2.BackgroundColor3 = Color3.fromRGB(17, 17, 17)
-		Reason_2.BackgroundTransparency = 1.000
-		Reason_2.BorderColor3 = Color3.fromRGB(27, 42, 53)
-		Reason_2.BorderSizePixel = 0
-		Reason_2.Position = UDim2.new(0.5, 0, 0.100000001, 0)
-		Reason_2.Size = UDim2.new(0.949999988, 0, 0.100000001, 0)
-		Reason_2.Visible = false
-		Reason_2.Font = Enum.Font.Oswald
-		Reason_2.Text = "-MessagePosted function is invalid."
-		Reason_2.TextColor3 = Color3.fromRGB(255, 0, 0)
-		Reason_2.TextScaled = true
-		Reason_2.TextSize = 50.000
-		Reason_2.TextWrapped = true
-		Reason_2.TextYAlignment = Enum.TextYAlignment.Top
-	
-		Trollge.Name = "Trollge"
-		Trollge.Parent = WarningFrame
-		Trollge.AnchorPoint = Vector2.new(0.5, 0.5)
-		Trollge.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		Trollge.BackgroundTransparency = 1.000
-		Trollge.Position = UDim2.new(0.5, 0, 0.670000017, 0)
-		Trollge.Size = UDim2.new(0.449999988, 0, 0.5, 0)
-		Trollge.Image = "rbxassetid://10104834800"
-	
-		UIPadding.Parent = WarningFrame
-		UIPadding.PaddingTop = UDim.new(0, 10)
-	
-		Exit.MouseButton1Click:Connect(function()
-			local UpTween = Tween(Background, .2, "Quint", "Out", {Position = UDim2.new(0.5, 0, 0.45, 0)})
-			local DownTween = Tween(Background, 1, "Quad", "Out", {Position = UDim2.new(0.5, 0, 2, 0)})
-			UpTween:Play()
-			UpTween.Completed:wait()
-			DownTween:Play()
-			DownTween.Completed:wait()
-			ACLWarning:Destroy()
-		end)
-	end)()
-	
-	local ExitCooldown = function()
-		wait(3)
-		local Tween = Tween(Bar, 5, "Quad", "InOut", {Size = UDim2.new(1, 0, 1, 0)})
-		Tween:Play()
-		Tween.Completed:wait()
-		Loading:Destroy()
-		Exit.Visible = true
-	end
-	
-	local PlayerScripts = Player:WaitForChild("PlayerScripts")
-	local ChatMain = PlayerScripts:FindFirstChild("ChatMain", true) or false
-	
-	if not ChatMain then
-		local Timer = tick()
-		repeat
-			task.wait()
-		until PlayerScripts:FindFirstChild("ChatMain", true) or tick() > (Timer + 3)
-		ChatMain = PlayerScripts:FindFirstChild("ChatMain", true)
-		if not ChatMain then
-			ACLWarning.Enabled = true
-			Reason_1.Visible = true
-			ExitCooldown()
-			return
-		end
-	end
-	
-	local PostMessage = require(ChatMain).MessagePosted
-	
-	if not PostMessage then
-		ACLWarning.Enabled = true
-		Reason_2.Visible = true
-		ExitCooldown()
-		return
-	end
-	
-	local MessageEvent = Instance.new("BindableEvent")
-	local OldFunctionHook
-	OldFunctionHook = hookfunction(PostMessage.fire, function(self, Message)
-		if not checkcaller() and self == PostMessage then
-			MessageEvent:Fire(Message)
-			return
-		end
-		return OldFunctionHook(self, Message)
-	end)
-	
-	if setfflag then
-		setfflag("AbuseReportScreenshot", "False")
-		setfflag("AbuseReportScreenshotPercentage", 0)
-	end
-	
-	ChatFixToggle = false
-	ACLWarning:Destroy()
-	if OldSetting then
-		StarterGui:SetCoreGuiEnabled(CoreGuiSettings[1], CoreGuiSettings[2])
-	end
-	Notify("Loaded Successfully", "Anti Chat and Screenshot Logger Loaded!", 15)
-	print(string.format("Anti Chat-Logger has loaded in %s seconds.", tostring(tick() - ACL_LoadTime):sub(1, 4)))
-end
-coroutine.wrap(KOCEWAH_fake_script)()
+	return ChatBypass(self, ...)
+
+
+	--fucking
+end)
